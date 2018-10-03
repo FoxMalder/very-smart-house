@@ -1,0 +1,27 @@
+{
+  "name": "very-smart-house",
+  "version": "1.0.0",
+  "description": "Home work for Yandex SHRI 2018-II",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/preigile/very-smart-house.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/preigile/very-smart-house/issues"
+  },
+  "homepage": "https://github.com/preigile/very-smart-house#readme",
+  "devDependencies": {
+    "@babel/preset-env": "^7.1.0",
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "cssnano": "^4.1.4",
+    "less": "^3.8.1"
+  }
+}
