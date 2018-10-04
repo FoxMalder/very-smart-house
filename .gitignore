@@ -62,7 +62,6 @@ fabric.properties
 .idea/httpRequests
 
 .DS_Store
-.cache/
 .idea/misc.xml
 .idea/modules.xml
 .idea/very-smart-house.iml
@@ -70,6 +69,5 @@ fabric.properties
 .idea/workspace.xml
 app/.DS_Store
 app/storage/
-dist/
 node_modules/
 package-lock.json
