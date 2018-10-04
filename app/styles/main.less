@@ -1,3 +1,40 @@
-#root {
-  color: grey;
+body {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  padding: 0;
+  font: .8em ArialMT, Arial, Helvetica, sans-serif;
+  font-size: 16px;
+  color: @grey-dark;
+  overflow-x: hidden;
 }
+
+.header {
+  grid-area: header;
+  position: fixed;
+}
+
+.cards {
+  grid-area: cards;
+}
+
+.footer {
+  grid-area: footer;
+}
+
+@supports (display: grid) {
+  .app {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 92px auto 64px;
+    grid-template-areas: "header" "cards" "footer"
+  }
+}
+
+@import "variables";
+@import "header";
+@import "footer";
+@import "cards";
+
+@import "media-query";

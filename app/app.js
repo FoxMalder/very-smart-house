@@ -1,3 +1,10 @@
-import './styles/main.less';
+import App from "./components/App";
+import './styles/main.less'
 
-console.log('smart house detected');
+let root = document.getElementById('root');
+
+window.update = () => {
+    root.innerHTML = App();
+};
+
+window.update();

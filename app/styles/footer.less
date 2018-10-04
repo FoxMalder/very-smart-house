@@ -1,0 +1,29 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 0 40px;
+
+  &__nav {
+    display: flex;
+  }
+
+  &__nav-item {
+    margin-right: 15px;
+    font-size: 12px;
+    letter-spacing: 0.01px;
+    color: @grey;
+    text-align: left;
+    text-decoration: none;
+    .transition();
+    &:hover {
+      color: @grey-dark;
+    }
+  }
+
+  &__logo {
+    font-size: 12px;
+    letter-spacing: 0.01px;
+    color: @grey;
+  }
+}
