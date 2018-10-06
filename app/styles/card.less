@@ -1,7 +1,4 @@
 .card {
-  width: 172px;
-  height: 92px;
-  padding: 14px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -10,21 +7,75 @@
   background: @grey-light;
   cursor: pointer;
 
-  &__title {
-    font-size: 14px;
-    font-weight: bold;
-    text-align: left;
+  &__content {
+    padding: 20px;
   }
 
-  &__description {
-    margin-top: 5px;
-    font-size: 12px;
-    color: @grey;
-    text-align: left;
+  &__additional_content {
+    border-radius: 20px;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: bold;
+  }
+
+  &__source,
+  &__time {
+    font-size: 18px;
   }
 
   &__icon {
     width: 24px;
     height: 24px;
+  }
+
+  &__description {
+    font-size: 20px;
+  }
+
+  &_type_critical {
+    background: @red;
+  }
+
+  &__data {
+    .graph__icon {
+      width: 100%;
+      height: 19em;
+      background: url("../assets/graph.svg") no-repeat;
+      .contain-img();
+      border-radius: 20px;
+    }
+  }
+
+  .image {
+    width: 100%;
+    height: 19em;
+    background: url("../assets/graph.svg") no-repeat;
+    .contain-img();
+    border-radius: 20px;
+  }
+
+  .camera__image {
+    width: 100%;
+    height: 19em;
+    background: url("../assets/camera.png");
+    border-radius: 20px;
+  }
+
+  &_size_l {
+    grid-column: span 3;
+
+    .card__description {
+      font-size: 24px;
+    }
+  }
+
+  &_size_m {
+    grid-column: span 2;
+  }
+
+  &_size_s {
+    grid-column: span 1;
   }
 }

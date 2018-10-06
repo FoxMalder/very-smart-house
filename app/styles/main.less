@@ -9,6 +9,15 @@ body {
   overflow-x: hidden;
 }
 
+.app {
+  min-height: 100vh;
+  display: grid;
+  display: -ms-grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 92px auto 64px;
+  grid-template-areas: "header" "cards" "footer"
+}
+
 .header {
   grid-area: header;
   position: fixed;
@@ -20,16 +29,6 @@ body {
 
 .footer {
   grid-area: footer;
-}
-
-@supports (display: grid) {
-  .app {
-    min-height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 92px auto 64px;
-    grid-template-areas: "header" "cards" "footer"
-  }
 }
 
 @import "variables";
