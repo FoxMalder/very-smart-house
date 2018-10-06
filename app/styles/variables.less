@@ -1,7 +1,9 @@
 @red: #DB5341;
 @yellow: #FFD93E;
 @white: #FFF;
-@grey-light: #F7F7F7;
+@grey-lightest: #FAFAFA;
+@grey-light: #F3F3F3;
+@grey-control: #E5E5E5;
 @grey: #858585;
 @grey-dark: #333;
 @black: #000;
@@ -33,4 +35,24 @@
   background: @white;
   border-radius: 5px;
   box-shadow: 0 2px 6px 0 rgba(197, 186, 186, 0.50);
+}
+
+.length-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 12px;
+  height: 20px;
+  border-radius: 5px;
+  background: @grey-control;
+  cursor: pointer;
+}
+
+.volume-range-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: @grey;
+  cursor: pointer;
 }

@@ -1,3 +1,7 @@
+import trackImg from '../assets/album-cover.png';
+import cameraImg from '../assets/camera.png';
+import graphImg from '../assets/graph.png';
+
 export default (events) => {
     if (events.icon === 'music') {
         return dataTemplates.music(events.data);
@@ -7,7 +11,7 @@ export default (events) => {
         return dataTemplates.graph();
     } else if (events.data.buttons) {
         let btn = function (btn, index) {
-            return `<div class="button__${index}">${btn}</div>`
+            return `<div class="button button__${index}">${btn}</div>`
         };
         return dataTemplates.buttons(events.data, btn);
     } else if (events.data.image) {
@@ -19,21 +23,24 @@ let dataTemplates = {
     music: (data) => {
         return `<div class="track__container">
                     <div class="track__info">
-                        <div class="track_image"></div>
-                        <div class="track">
-                            <span class="track__artist">${data.artist}</span>
-                            <span class="track__name">${data.track.name}</span>
-                        </div>
-                        <div class="track__controls">
-                            <input type="range" class="track__length-control">
-                            <span class="track__length">${data.track.length}</span>
+                        <img class="track_image" src="${trackImg}">
+                        <div class="track__panel">
+                            <div class="track">
+                                <span class="track__artist">${data.artist}</span>
+                                <span> - </span>
+                                <span class="track__name">${data.track.name}</span>
+                            </div>
+                            <div class="track__controls">
+                                <input type="range" class="track__length-control">
+                                <span class="track__controls-text">${data.track.length}</span>
+                            </div>
                         </div>
                     </div>
-                    <div class="tracks__controls">
+                    <div class="track__controls">
                         <div class="track__previous"></div>
                         <div class="track__next"></div>
                         <input type="range" class="track__volume-control">
-                        <span class="track__volume">${data.volume}</span>
+                        <span class="track__controls-text">${data.volume}%</span>
                     </div>
                 </div>`
     },
@@ -52,9 +59,7 @@ let dataTemplates = {
     },
 
     graph: () => {
-        return `<div class="graph">
-                    <div class="graph__icon"></div>
-                </div>`;
+        return `<img class="graph__image image" src="${graphImg}">`;
     },
 
     buttons: (data, btn) => {
@@ -64,6 +69,6 @@ let dataTemplates = {
     },
 
     camera: () => {
-        return `<div class="camera__image"></div>`;
+        return `<img class="camera__image image" src="${cameraImg}">`;
     }
 };

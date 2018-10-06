@@ -3,31 +3,127 @@
   flex-direction: column;
   justify-content: space-between;
   flex-shrink: 0;
+  padding: 20px;
+  position: relative;
   border-radius: 20px;
-  background: @grey-light;
+  background: @grey-lightest;
   cursor: pointer;
+  &:hover {
+    background: @grey-light;
+    box-shadow: 0 2px 6px 0 rgba(197,186,186,0.50);
 
-  &__content {
+    .button__close,
+    .button__next {
+      display: block;
+    }
+
+    .card__additional-content {
+      background: @grey-light;
+    }
+  }
+
+  .button__close,
+  .button__next {
+    display: none;
+    width: 17px;
+    height: 17px;
+    position: absolute;
+    right: 20px;
+  }
+
+  .button__close {
+    top: 20px;
+    background: url("../assets/cross.svg") no-repeat;
+  }
+
+  .button__next {
+    bottom: 20px;
+    background: url("../assets/next.svg") no-repeat;
+  }
+
+  &__additional-content {
     padding: 20px;
-  }
-
-  &__additional_content {
+    margin: -20px;
     border-radius: 20px;
+    background: @grey-lightest;
   }
 
-  &__title {
-    font-size: 24px;
-    font-weight: bold;
+  &__title-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 25px;
+
+    .card__title {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .card__icon-container {
+      width: 52px;
+      height: 52px;
+      display: flex;
+      align-items: center;
+      margin-right: 18px;
+
+      .card__icon {
+        width: 48px;
+
+        &-stats {
+          height: 23px;
+          background: url("../assets/stats.svg") no-repeat;
+        }
+        &-key {
+          height: 45px;
+          background: url("../assets/key.svg") no-repeat;
+        }
+        &-robot-cleaner {
+          height: 29px;
+          background: url("../assets/robot-cleaner.svg") no-repeat;
+        }
+        &-router {
+          height: 46px;
+          background: url("../assets/router.svg") no-repeat;
+        }
+        &-thermal {
+          height: 48px;
+          background: url("../assets/router.svg") no-repeat;
+        }
+        &-ac {
+          height: 41px;
+          background: url("../assets/air-conditioner.svg") no-repeat;
+        }
+        &-music {
+          height: 48px;
+          background: url("../assets/music.svg") no-repeat;
+        }
+        &-fridge {
+          height: 48px;
+          background: url("../assets/fridge.svg") no-repeat;
+        }
+        &-battery {
+          height: 25px;
+          background: url("../assets/battery.svg") no-repeat;
+        }
+        &-cam {
+          height: 36px;
+          background: url("../assets/camera.svg") no-repeat;
+        }
+        &-kettle {
+          height: 48px;
+          background: url("../assets/kettle.svg") no-repeat;
+        }
+      }
+    }
   }
 
-  &__source,
-  &__time {
-    font-size: 18px;
-  }
+  &__info {
+    display: flex;
+    justify-content: space-between;
 
-  &__icon {
-    width: 24px;
-    height: 24px;
+    &__source,
+    &__time {
+      font-size: 18px;
+    }
   }
 
   &__description {
@@ -35,36 +131,155 @@
   }
 
   &_type_critical {
+    color: @white;
     background: @red;
-  }
+    &:hover {
+      background: @red;
+    }
 
-  &__data {
-    .graph__icon {
-      width: 100%;
-      height: 19em;
-      background: url("../assets/graph.svg") no-repeat;
-      .contain-img();
-      border-radius: 20px;
+    .card__additional-content {
+      margin-top: 20px;
+      color: @grey-dark;
     }
   }
 
-  .image {
-    width: 100%;
-    height: 19em;
-    background: url("../assets/graph.svg") no-repeat;
-    .contain-img();
-    border-radius: 20px;
-  }
+  &__data {
+    .image {
+      width: 100%;
+      border-radius: 20px;
+    }
 
-  .camera__image {
-    width: 100%;
-    height: 19em;
-    background: url("../assets/camera.png");
-    border-radius: 20px;
+    .graph__image {
+      margin-top: 40px;
+    }
+
+    .camera__image {
+    }
+
+    .thermal__container {
+      margin-top: 22px;
+      display: flex;
+
+      .thermal__temperature {
+        margin-right: 52px;
+        font-size: 18px;
+      }
+
+      .thermal__value {
+        font-weight: bold;
+      }
+    }
+
+    .track__container {
+      margin-top: 25px;
+
+      .track__info {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+      }
+
+      .track__image {
+        width: 52px;
+        height: 52px;
+      }
+
+      .track__panel {
+        flex-grow: 1;
+        margin-left: 15px;
+      }
+
+      .track {
+        font-size: 20px;
+
+        &__controls {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+
+          &-text {
+            font-size: 14px;
+            color: @grey;
+          }
+        }
+
+        &__length-control {
+          flex-grow: 1;
+          height: 0;
+          margin-right: 16px;
+          border: 1px solid @grey;
+          -webkit-appearance: none;
+          outline: none;
+          &::-webkit-slider-thumb {
+            .length-range-thumb();
+          }
+          &::-moz-range-thumb {
+            .length-range-thumb();
+          }
+          &::-ms-thumb {
+            .length-range-thumb();
+          }
+        }
+
+        &__previous,
+        &__next {
+          width: 52px;
+          height: 52px;
+          background: url("../assets/prev.svg") no-repeat;
+        }
+
+        &__next {
+          transform: rotate(180deg);
+          margin-left: 27px;
+        }
+
+        &__volume-control {
+          height: 4px;
+          flex-grow: 1;
+          margin: 0 20px;
+          background: rgba(216,216,216,0.30);
+          border-radius: 2px;
+          -webkit-appearance: none;
+          outline: none;
+          &::-webkit-slider-thumb {
+            .volume-range-thumb();
+          }
+          &::-moz-range-thumb {
+            .volume-range-thumb();
+          }
+          &::-ms-thumb {
+            .volume-range-thumb();
+          }
+        }
+      }
+    }
+
+    .buttons__container {
+      display: flex;
+      margin-top: 50px;
+
+      .button {
+        width: 132px;
+        height: 54px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        border-radius: 8px;
+        background: @grey-control;
+        font-size: 20px;
+        font-weight: bold;
+
+        &__0 {
+          margin-right: 18px;
+          background: @yellow;
+        }
+      }
+    }
   }
 
   &_size_l {
-    grid-column: span 3;
+    grid-column: span 4;
 
     .card__description {
       font-size: 24px;
@@ -72,10 +287,18 @@
   }
 
   &_size_m {
-    grid-column: span 2;
+    grid-column: span 3;
   }
 
   &_size_s {
-    grid-column: span 1;
+    grid-column: span 2;
+
+    .card__info {
+      flex-direction: column;
+
+      .card__source {
+        margin-bottom: 20px;
+      }
+    }
   }
 }
