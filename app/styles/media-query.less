@@ -37,7 +37,7 @@
   }
 
   .footer {
-    margin: 0 20px;
+    padding: 0 20px;
     justify-content: space-around;
     flex-direction: column;
     align-items: unset;
@@ -46,5 +46,17 @@
       margin-top: 10px;
       flex-wrap: wrap;
     }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .cards__container {
+    grid-gap: 16px;
+  }
+
+  .card_size_l,
+  .card_size_m,
+  .card_size_s {
+    grid-column: span 6;
   }
 }

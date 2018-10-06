@@ -54,7 +54,7 @@
     margin-bottom: 25px;
 
     .card__title {
-      font-size: 24px;
+      font-size: calc(0.875rem + ((1vw - 3.75px) * 1.0091));
       font-weight: bold;
     }
 
@@ -122,12 +122,12 @@
 
     &__source,
     &__time {
-      font-size: 18px;
+      font-size: calc(0.75rem + ((1vw - 3.75px) * 0.6054));
     }
   }
 
   &__description {
-    font-size: 20px;
+    font-size: calc(1.125rem + ((1vw - 3.75px) * 0.2018));
   }
 
   &_type_critical {
@@ -154,15 +154,16 @@
     }
 
     .camera__image {
+      margin-top: 30px;
     }
 
     .thermal__container {
       margin-top: 22px;
       display: flex;
+      font-size: calc(0.875rem + ((1vw - 3.75px) * 0.4036));
 
       .thermal__temperature {
         margin-right: 52px;
-        font-size: 18px;
       }
 
       .thermal__value {
@@ -191,7 +192,8 @@
       }
 
       .track {
-        font-size: 20px;
+        margin-bottom: 10px;
+        font-size: calc(1.125rem + ((1vw - 3.75px) * 0.2018));
 
         &__controls {
           display: flex;
@@ -280,9 +282,10 @@
 
   &_size_l {
     grid-column: span 4;
+    grid-row: span 3;
 
     .card__description {
-      font-size: 24px;
+      font-size: calc(1.125rem + ((1vw - 3.75px) * 0.6054));
     }
   }
 
