@@ -51,19 +51,23 @@ export default () => {
             if (eventsCache.length === 2) {
                 let curDiff = Math.abs(eventsCache[0].clientX - eventsCache[1].clientX);
                 let size = document.getElementById('camera__oncoming');
+                let curSize = nodeState.scale;
 
                 if (prevDiff > 0) {
                     if (curDiff > prevDiff) {
-                        size.innerText = `${curDiff}`;
-                        camera.style.transform = `scale(${1 + curDiff * 0.01})`;
+                        curSize = curSize + curDiff * 0.01;
+                        size.innerText = `${curSize * 100}`;
+                        camera.style.transform = `scale(${curSize})`;
                     }
                     if (curDiff < prevDiff && curDiff > 10) {
-                        size.innerText = `${curDiff}`;
-                        camera.style.transform = `scale(${1 - curDiff * 0.1})`;
+                        curSize = curSize - curDiff * 0.01;
+                        size.innerText = `${curSize * 100}`;
+                        camera.style.transform = `scale(${curSize})`;
                     }
                 }
 
                 prevDiff = curDiff;
+                nodeState.scale = curSize;
             }
         });
 
