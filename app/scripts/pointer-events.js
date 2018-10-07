@@ -11,6 +11,11 @@ export default () => {
     };
 
     if ('ontouchstart' in document.documentElement) {
+        let cameraControls = document.getElementsByClassName('camera__controls');
+        for(let i = 0, length = cameraControls.length; i < length; i++) {
+            cameraControls[i].style.display = 'flex';
+        }
+
         camera.addEventListener('pointerdown', (event) => {
             eventsCache.push(event);
 
@@ -55,12 +60,12 @@ export default () => {
 
                 if (prevDiff > 0) {
                     if (curDiff > prevDiff) {
-                        curSize = curDiff / prevDiff;
+                        curSize = (curDiff / prevDiff * curSize).toFixed(2);
                         size.innerText = `${curSize * 100}`;
                         camera.style.transform = `scale(${curSize})`;
                     }
                     if (curDiff < prevDiff && curDiff > 10) {
-                        curSize = curDiff / prevDiff;
+                        curSize = (curDiff / prevDiff * curSize).toFixed(2);
                         size.innerText = `${curSize * 100}`;
                         camera.style.transform = `scale(${curSize})`;
                     }
