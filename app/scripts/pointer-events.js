@@ -10,7 +10,7 @@ export default () => {
         brightness: 100,
     };
 
-    if ("ontouchstart" in document.documentElement) {
+    if ('ontouchstart' in document.documentElement) {
         camera.addEventListener('pointerdown', (event) => {
             eventsCache.push(event);
 
@@ -55,16 +55,21 @@ export default () => {
                 if (prevDiff > 0) {
                     if (curDiff > prevDiff) {
                         size.innerText = `${curDiff}`;
-                        camera.style.transform = `scale(${1 + curDiff * 0.1})`;
+                        camera.style.transform = `scale(${1 + curDiff * 0.01})`;
                     }
                     if (curDiff < prevDiff) {
                         size.innerText = `${curDiff}`;
-                        camera.style.transform = `scale(${1 - curDiff * 0.1})`;
+                        camera.style.transform = `scale(${1 - curDiff * 0.01})`;
                     }
                 }
 
                 prevDiff = curDiff;
             }
+        });
+
+        camera.addEventListener('pointerup', (event) => {
+            eventsCache = [];
+            if (eventsCache.length < 2) prevDiff = -1;
         });
     }
 }
