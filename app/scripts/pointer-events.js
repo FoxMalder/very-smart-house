@@ -55,12 +55,12 @@ export default () => {
 
                 if (prevDiff > 0) {
                     if (curDiff > prevDiff) {
-                        curSize = curSize + curDiff * 0.01;
+                        curSize = curDiff / prevDiff;
                         size.innerText = `${curSize * 100}`;
                         camera.style.transform = `scale(${curSize})`;
                     }
                     if (curDiff < prevDiff && curDiff > 10) {
-                        curSize = curSize - curDiff * 0.01;
+                        curSize = curDiff / prevDiff;
                         size.innerText = `${curSize * 100}`;
                         camera.style.transform = `scale(${curSize})`;
                     }
