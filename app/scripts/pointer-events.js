@@ -57,9 +57,9 @@ export default () => {
                         size.innerText = `${curDiff}`;
                         camera.style.transform = `scale(${1 + curDiff * 0.01})`;
                     }
-                    if (curDiff < prevDiff) {
+                    if (curDiff < prevDiff && curDiff > 10) {
                         size.innerText = `${curDiff}`;
-                        camera.style.transform = `scale(${1 - curDiff * 0.01})`;
+                        camera.style.transform = `scale(${1 - curDiff * 0.1})`;
                     }
                 }
 
@@ -69,6 +69,7 @@ export default () => {
 
         camera.addEventListener('pointerup', (event) => {
             eventsCache = [];
+            currentGesture = null;
             if (eventsCache.length < 2) prevDiff = -1;
         });
     }
