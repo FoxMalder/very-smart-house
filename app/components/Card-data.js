@@ -69,8 +69,12 @@ let dataTemplates = {
     },
 
     camera: () => {
-        return `<div id="camera" class="camera__container" touch-action="none">
-                    <img class="camera__image image" src="${cameraImg}">
+        return `<div class="camera__container" touch-action="none">
+                    <img id="camera" class="camera__image image" src="${cameraImg}">
+                </div>
+                <div class="camera__controls">
+                    <div>Приближение: <span id="camera__oncoming">100</span>%</div>
+                    <div>Яркость: <span id="camera__bright">100</span>%</div>
                 </div>`;
     }
 };

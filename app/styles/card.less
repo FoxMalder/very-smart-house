@@ -153,8 +153,22 @@
       margin-top: 40px;
     }
 
-    .camera__image {
+    .camera__container {
       margin-top: 30px;
+      overflow: hidden;
+      border-radius: 20px;
+
+      .camera__image {
+        transform: scale(1) translate(0);
+        filter: brightness(100%);
+      }
+    }
+
+    .camera__controls {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 15px;
+      font-size: 12px;
     }
 
     .thermal__container {
