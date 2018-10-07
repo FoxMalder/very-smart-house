@@ -1,5 +1,6 @@
+import pointerEvents from './scripts/pointer-events';
 import App from "./components/App";
-import './styles/main.less'
+import './styles/main.less';
 
 let root = document.getElementById('root');
 
@@ -8,3 +9,5 @@ window.update = () => {
 };
 
 window.update();
+
+pointerEvents();
