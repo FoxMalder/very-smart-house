@@ -1,4 +1,5 @@
 const express = require('express');
+const fs = require('fs');
 const app = express();
 const port = 8000;
 
@@ -26,7 +27,27 @@ app.get('/status', (req, res) => {
 
     /* Короткое решение */
 
-    res.send(new Date(diff).toLocaleTimeString('ru-RU', { timeZone: 'UTC'}))
+    res.send(new Date(diff).toLocaleTimeString('ru-RU', {timeZone: 'UTC'}))
+});
+
+app.get('/api/events', (req, res) => {
+    let database = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+    let requestedTypes = req.query.type ? new Set(req.query.type.split(':')) : false;
+
+    if (requestedTypes) {
+        let filteredData = {};
+        let types = new Set(database.events.map(event => event.type));
+        let unknownTypes = new Set([...requestedTypes].filter(type => !types.has(type)));
+        filteredData.events = database.events.filter((event) => requestedTypes.has(event.type));
+
+        if (unknownTypes.size) {
+            res.status(400).send(`Incorrect types: [${Array.from(unknownTypes)}]. Supported ones [${Array.from(types)}]`);
+        } else {
+            res.json(filteredData);
+        }
+    } else {
+        res.json(database);
+    }
 });
 
 app.listen(port, (err) => {
