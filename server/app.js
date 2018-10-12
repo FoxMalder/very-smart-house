@@ -33,29 +33,26 @@ app.get('/status', (req, res) => {
 
 app.get('/api/events', (req, res) => {
     database = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
-    let perPage = 2;
+    let limitedData = {};
+    let filteredData = {};
     let page = req.query.page || 1;
-    let limit = req.query.limit || 2;
+    let limit = req.query.limit || database.events.length;
     let requestedTypes = req.query.type ? new Set(req.query.type.split(':')) : false;
 
     if (requestedTypes) {
-        let filteredData = {};
         let types = new Set(database.events.map(event => event.type));
         let unknownTypes = new Set([...requestedTypes].filter(type => !types.has(type)));
         filteredData.events = database.events.filter((event) => requestedTypes.has(event.type));
 
         if (unknownTypes.size) {
             res.status(400).send(`Incorrect types: [${Array.from(unknownTypes)}]. Supported ones [${Array.from(types)}]`);
-        } else {
-            res.json(filteredData);
         }
-    } else if (page) {
-        let limitedData = {};
-        limitedData.events = database.events.slice(((limit * page) - limit), (limit * page));
-        res.json(limitedData);
-    } else {
-        res.json(database);
     }
+
+    let events = filteredData.events || database.events;
+
+    limitedData.events = events.slice(((limit * page) - limit), (limit * page));
+    res.json(limitedData);
 });
 
 app.get('*', (req, res) =>{
