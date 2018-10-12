@@ -50,6 +50,18 @@ app.get('/api/events', (req, res) => {
     }
 });
 
+// router.get('/products/:page', function(req, res, next) {
+//     var perPage = 9
+//     var page = req.params.page || 1
+//
+//     eventsArray
+//         .skip((perPage * page) - perPage)
+//         .limit(perPage)
+
+app.get('*', (req, res) =>{
+    res.status(404).send('<h1>Page not found</h1>');
+});
+
 app.listen(port, (err) => {
     if (err) {
         return console.log('err', err);
