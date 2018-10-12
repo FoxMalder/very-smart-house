@@ -4,6 +4,7 @@ const app = express();
 const port = 8000;
 
 const START_DATE = new Date().getTime();
+let database = {};
 
 app.get('/', (req, res) => {
     res.send('Hello Home!');
@@ -31,7 +32,10 @@ app.get('/status', (req, res) => {
 });
 
 app.get('/api/events', (req, res) => {
-    let database = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+    database = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
+    let perPage = 2;
+    let page = req.query.page || 1;
+    let limit = req.query.limit || 2;
     let requestedTypes = req.query.type ? new Set(req.query.type.split(':')) : false;
 
     if (requestedTypes) {
@@ -45,18 +49,14 @@ app.get('/api/events', (req, res) => {
         } else {
             res.json(filteredData);
         }
+    } else if (page) {
+        let limitedData = {};
+        limitedData.events = database.events.slice(((limit * page) - limit), (limit * page));
+        res.json(limitedData);
     } else {
         res.json(database);
     }
 });
-
-// router.get('/products/:page', function(req, res, next) {
-//     var perPage = 9
-//     var page = req.params.page || 1
-//
-//     eventsArray
-//         .skip((perPage * page) - perPage)
-//         .limit(perPage)
 
 app.get('*', (req, res) =>{
     res.status(404).send('<h1>Page not found</h1>');
