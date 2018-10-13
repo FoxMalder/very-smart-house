@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 const START_DATE = new Date().getTime();
 
-let database = {};
+let database = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
 
 app.get('/', (req, res) => {
     res.send('Hello Home!');
@@ -37,27 +37,37 @@ app.get('/status', (req, res) => {
 });
 
 app.post('/api/events', (req, res) => {
-    database = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
-    let limitedData = {};
-    let filteredData = {};
+    let result = {
+        events: database.events
+    };
     let page = req.body.page || 1;
     let limit = req.body.limit || database.events.length;
     let requestedTypes = req.body.type ? new Set(req.body.type.split(':')) : false;
 
     if (requestedTypes) {
-        let types = new Set(database.events.map(event => event.type));
-        let unknownTypes = new Set([...requestedTypes].filter(type => !types.has(type)));
-        filteredData.events = database.events.filter((event) => requestedTypes.has(event.type));
+        let types = new Set(
+            database.events.map(event => event.type)
+        );
+        let unknownTypes = new Set(
+            [...requestedTypes]
+                .filter(type => !types.has(type))
+        );
 
         if (unknownTypes.size) {
-            res.status(400).send(`Incorrect types: [${Array.from(unknownTypes)}]. Supported ones [${Array.from(types)}]`);
+            res.status(400).send(
+                `Incorrect types: [${Array.from(unknownTypes)}].
+                 Supported ones [${Array.from(types)}]`
+            );
+            return;
         }
+
+        result.events = database.events
+            .filter((event) => requestedTypes.has(event.type));
     }
 
-    let events = filteredData.events || database.events;
-
-    limitedData.events = events.slice(((limit * page) - limit), (limit * page));
-    res.json(limitedData);
+    res.json({
+        events: result.events.slice(((limit * page) - limit), (limit * page))
+    });
 });
 
 app.get('*', (req, res) =>{
