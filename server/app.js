@@ -1,9 +1,14 @@
+const bodyParser = require('body-parser');
 const express = require('express');
 const fs = require('fs');
 const app = express();
 const port = 8000;
 
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
+
 const START_DATE = new Date().getTime();
+
 let database = {};
 
 app.get('/', (req, res) => {
@@ -31,13 +36,13 @@ app.get('/status', (req, res) => {
     res.send(new Date(diff).toLocaleTimeString('ru-RU', {timeZone: 'UTC'}))
 });
 
-app.get('/api/events', (req, res) => {
+app.post('/api/events', (req, res) => {
     database = JSON.parse(fs.readFileSync(process.argv[2], 'utf8'));
     let limitedData = {};
     let filteredData = {};
-    let page = req.query.page || 1;
-    let limit = req.query.limit || database.events.length;
-    let requestedTypes = req.query.type ? new Set(req.query.type.split(':')) : false;
+    let page = req.body.page || 1;
+    let limit = req.body.limit || database.events.length;
+    let requestedTypes = req.body.type ? new Set(req.body.type.split(':')) : false;
 
     if (requestedTypes) {
         let types = new Set(database.events.map(event => event.type));
