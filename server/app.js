@@ -74,6 +74,10 @@ app.get('*', (req, res) =>{
     res.status(404).send('<h1>Page not found</h1>');
 });
 
+app.post('*', (req, res) =>{
+    res.status(404).send('<h1>Page not found</h1>');
+});
+
 app.listen(port, (err) => {
     if (err) {
         return console.log('err', err);
