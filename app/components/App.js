@@ -1,9 +1,9 @@
 import Header from "./Header";
-import Cards from "./Cards";
+import Content from "./Content";
 import Footer from "./Footer";
 
 export default () => {
     return `${Header()}
-            ${Cards()}
+            ${Content()}
             ${Footer()}`;
 }
