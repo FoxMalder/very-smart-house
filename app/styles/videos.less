@@ -31,6 +31,10 @@
       transition: all 2s ease;
     }
 
+    &__controls {
+      display: none;
+    }
+
     &_hidden {
       display: none;
     }
@@ -41,6 +45,10 @@
       position: absolute;
       display: block;
       z-index: 1;
+
+      .video__controls {
+        display: block;
+      }
     }
   }
 }
