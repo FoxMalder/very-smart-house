@@ -1,9 +1,12 @@
 const express = require('express');
+const cors = require('cors');
 const app = express();
 const port = 8000;
 
 const statusRouter = require('./status');
 const eventsRouter = require('./events');
+
+app.use(cors());
 
 app.use('/status', statusRouter);
 app.use('/api/events', eventsRouter);
