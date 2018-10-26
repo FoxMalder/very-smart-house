@@ -1,0 +1,54 @@
+.videos {
+  width: 100%;
+  max-width: 1024px;
+  margin: 0 40px;
+
+  &__title {
+    margin-bottom: 32px;
+  }
+
+  .all-cameras__title {
+    cursor: pointer;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, 360px);
+    grid-template-rows: repeat(auto-fill, 360px);
+    grid-gap: 10px;
+    justify-content: space-between;
+    align-content: center;
+    position: relative;
+  }
+
+  .video {
+    width: 100%;
+    height: auto;
+    display: flex;
+    transition: all 2s ease;
+
+    &__container {
+      transition: all 2s ease;
+    }
+
+    &__controls {
+      display: none;
+    }
+
+    &_hidden {
+      display: none;
+    }
+
+    &_selected {
+      width: 100%;
+      height: 100%;
+      position: absolute;
+      display: block;
+      z-index: 1;
+
+      .video__controls {
+        display: block;
+      }
+    }
+  }
+}

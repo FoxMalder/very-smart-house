@@ -13,9 +13,10 @@ body {
   min-height: 100vh;
   display: grid;
   display: -ms-grid;
+  grid-row-gap: calc(1.125rem + ((1vw - 3.75px) * 1.6145));
   grid-template-columns: 1fr;
   grid-template-rows: 92px auto 64px;
-  grid-template-areas: "header" "cards" "footer"
+  grid-template-areas: "header" "content" "footer"
 }
 
 .header {
@@ -23,15 +24,24 @@ body {
   position: fixed;
 }
 
-.cards {
-  grid-area: cards;
+.content {
+  grid-area: content;
+  display: flex;
+  justify-content: center;
 }
 
 .footer {
   grid-area: footer;
 }
 
+.title {
+  font-size: calc(1.5rem + ((1vw - 3.75px) * 1.2109));
+  font-weight: bold;
+  text-align: left;
+}
+
 @import "variables";
+@import "videos";
 @import "header";
 @import "footer";
 @import "cards";
