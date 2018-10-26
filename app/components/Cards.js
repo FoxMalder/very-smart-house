@@ -1,4 +1,6 @@
-let cardEvents = [];
+import eventsMock from '../../mock/events'
+
+let cardEvents = eventsMock.events;
 
 fetch('http://localhost:8000/api/events', {
     method: 'post',
