@@ -1,9 +1,11 @@
+import initVideo from '../scripts/init-video';
+
 window.videoObj = {
     selectedId: '',
     allVideosText: document.getElementById('all_videos'),
     container: document.getElementsByClassName('video__container'),
     brightness: 100,
-    grayscale: 0,
+    contrast: 100,
 
     selectVideo: (id) => {
         console.log('video selected', id);
@@ -28,7 +30,7 @@ window.videoObj = {
     filterVideo: (id) => {
         document.getElementById(`video-${id}`).style.filter =
             `brightness(${window.videoObj.brightness}%) 
-             grayscale(${window.videoObj.grayscale}%)`;
+             contrast(${window.videoObj.contrast}%)`;
     },
 
     changeBright: (id) => {
@@ -37,22 +39,24 @@ window.videoObj = {
     },
 
     changeContrast: (id) => {
-        window.videoObj.grayscale = document.getElementById(`video__contrast-${id}`).value;
+        window.videoObj.contrast = document.getElementById(`video__contrast-${id}`).value;
         window.videoObj.filterVideo(id);
     }
 };
 
 export default (video) => {
+    initVideo(document.getElementById(`video-${video.id}`), video.stream);
+
     return `<div id="video-${video.id}" class="video__container">
                 <div class="video__controls">
                     <div>
-                        <label for="bright">Яркость</label>
+                        <label for="video__bright-${video.id}">Яркость</label>
                         <input id="video__bright-${video.id}" name="bright" type="range" min="0" max="200" 
                         oninput="videoObj.changeBright(${video.id})">
                     </div>
                     <div>
-                        <label for="contrast">Констрастность</label>
-                        <input id="video__contrast-${video.id}" name="contras" type="range" value="0"
+                        <label for="video__contrast-${video.id}">Констрастность</label>
+                        <input id="video__contrast-${video.id}" name="contras" type="range" min="0" max="200"
                         oninput="videoObj.changeContrast(${video.id})">
                     </div>
                 </div>
