@@ -1,0 +1,68 @@
+@media only screen and (max-width: 1024px) {
+  @supports (display: grid) {
+    .app {
+      grid-template-columns: 100%;
+      grid-template-rows: 64px auto 64px;
+      grid-template-areas: "header" "content" "footer"
+    }
+  }
+
+  .header {
+    height: 64px;
+    justify-content: space-between;
+    box-shadow: none;
+
+    &__logo {
+      margin: 0 20px;
+    }
+
+    &__menu {
+      display: inline-block;
+      margin: 0 20px;
+    }
+
+    &__nav {
+      display: none;
+      &_visible {
+        .dropdown();
+        top: 40px;
+        right: 10px;
+      }
+    }
+
+    .content {
+      .videos {
+        margin: 0 20px;
+      }
+    }
+
+    .header__nav-item {
+      margin: 5px;
+      line-height: 15px;
+    }
+  }
+
+  .footer {
+    padding: 0 20px;
+    justify-content: space-around;
+    flex-direction: column;
+    align-items: unset;
+
+    &__nav {
+      margin-top: 10px;
+      flex-wrap: wrap;
+    }
+  }
+}
+
+@media only screen and (max-width: 960px) {
+  .cards__container {
+    grid-gap: 16px;
+  }
+
+  .card_size_l,
+  .card_size_m,
+  .card_size_s {
+    grid-column: span 6;
+  }
+}

@@ -66,8 +66,6 @@ fabric.properties
 .idea/modules.xml
 .idea/very-smart-house.iml
 .idea/watcherTasks.xml
-.idea/workspace.xml
-app/.DS_Store
 app/storage/
 dist/
 node_modules/
