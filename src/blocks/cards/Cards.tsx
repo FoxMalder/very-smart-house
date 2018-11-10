@@ -1,28 +1,36 @@
 import * as React from "react";
+import {Card} from "../card/Card";
 
-let eventsMock = require('./events');
+const eventsMock = require('../../mock/events');
 
-let cardEvents = eventsMock.events;
-console.log(cardEvents);
+interface CardState {
+    source: string;
+    title: string;
+    type?: string;
+    time: string;
+}
 
-fetch('http://localhost:8000/api/events', {
-    method: 'post',
-    headers: {
-        'Accept': 'application/json, text/plain, */*',
-        'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({})
-}).then(res => res.json())
-    .then(res => {
-        cardEvents = res.events;
-    });
+export interface CardsState {
+    cardEvents?: Card[]
+}
 
-// import Card from "./Card";
+export interface CardsProps {}
 
-export const Cards = () => (
-    <div className="cards">
-        <div className="cards__title title">Лента событий</div>
-        <div className="cards__container">
-        </div>
-    </div>
-);
+export class Cards extends React.Component<CardsProps, CardsState, CardState> {
+    state: any = { cardEvents: eventsMock.events};
+
+    render() {
+        let cardsList = this.state.cardEvents.map((event:CardState) => {
+            return <Card source={event.source} title={event.title} time={event.time} />;
+        });
+
+        return (
+            <div className="cards">
+                <div className="cards__title title">Лента событий</div>
+                <div className="cards__container">
+                    {cardsList}
+                </div>
+            </div>
+        )
+    }
+}
