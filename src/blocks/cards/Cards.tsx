@@ -1,27 +1,22 @@
 import * as React from "react";
-import {Card} from "../card/Card";
+import {Card, CardState} from "../card/Card";
 
 const eventsMock = require('../../mock/events');
 
-interface CardState {
-    source: string;
-    title: string;
-    type?: string;
-    time: string;
-}
-
 export interface CardsState {
-    cardEvents?: Card[]
+    cardEvents: CardState[];
 }
 
 export interface CardsProps {}
 
 export class Cards extends React.Component<CardsProps, CardsState, CardState> {
-    state: any = { cardEvents: eventsMock.events};
+    state: CardsState = {
+        cardEvents: eventsMock.events
+    };
 
     render() {
-        let cardsList = this.state.cardEvents.map((event:CardState) => {
-            return <Card source={event.source} title={event.title} time={event.time} />;
+        let cardsList = this.state.cardEvents.map((event:CardState, index:number) => {
+            return <Card event={event} key={index}/>;
         });
 
         return (
