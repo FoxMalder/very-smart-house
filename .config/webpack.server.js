@@ -11,7 +11,7 @@ const hotResolve = 'webpack/hot/poll?1000';
 const entry = ['./src/server/index'];
 isDev && entry.unshift(hotResolve);
 
-const externalsOptions = isDev ? { whitelist: [hotResolve] } : {};
+const externalsOptions = isDev ? {whitelist: [hotResolve]} : {};
 
 const plugins = [
     new webpack.NamedModulesPlugin(),
@@ -88,13 +88,20 @@ module.exports = {
         __dirname: false,
     },
     module: {
-        rules: [{
-            test: /\.tsx?$/,
-            loaders: 'ts-loader',
-        }, {
-            test: /\.css$/,
-            loaders: 'null-loader'
-        }]
+        rules: [
+            {
+                test: /\.tsx?$/,
+                loaders: 'ts-loader',
+            },
+            {
+                test: /\.css$/,
+                loaders: 'null-loader'
+            },
+            {
+                test: /\.(gif|svg|jpg|png)$/,
+                loader: 'file-loader',
+            }
+        ]
     },
     plugins
 };
