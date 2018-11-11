@@ -19,7 +19,6 @@ export interface CardDataProps {
 export class CardData extends React.Component<CardDataProps, CardDataState> {
     constructor(props: Readonly<CardDataProps>) {
         super(props);
-        console.log('props', props);
     }
 
     render() {

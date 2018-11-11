@@ -12,7 +12,6 @@ export interface ThermalProps {
 export class Thermal extends React.Component<ThermalProps, ThermalState> {
     constructor(props: Readonly<ThermalProps>) {
         super(props);
-        console.log('pr', props);
     }
 
     render() {
