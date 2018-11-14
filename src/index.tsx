@@ -4,7 +4,7 @@ import { BrowserRouter as Router } from 'react-router-dom';
 import { preloadReady } from 'react-loadable';
 
 import { register } from './registerServiceWorker';
-import { App } from './blocks/app/App';
+import { App } from './components/app/App';
 
 import './index.css';
 
@@ -21,4 +21,4 @@ const render = (Component: React.ComponentType) => preloadReady().then(() =>
 
 render(App);
 
-module.hot && module.hot.accept('./blocks/app/App', () => render(require('./blocks/app/App').App));
+module.hot && module.hot.accept('./components/app/App', () => render(require('./components/app/App').App));

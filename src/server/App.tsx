@@ -4,7 +4,7 @@ import * as got from 'got';
 import * as express from 'express';
 import { StaticRouter as Router } from 'react-router';
 
-import { App } from '../blocks/app/App';
+import { App } from '../components/app/App';
 
 const script = (url: string) => `<script type="text/javascript" src="${url}"></script>`;
 const style = (url: string) => `<link rel="stylesheet" href="${url}">`;
